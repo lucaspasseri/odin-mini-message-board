@@ -1,0 +1,25 @@
+{
+	"name": "odin-mini-message-board",
+	"version": "1.0.0",
+	"main": "app.js",
+	"type": "module",
+	"scripts": {
+		"start": "node --watch app.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lucaspasseri/odin-mini-message-board.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/lucaspasseri/odin-mini-message-board/issues"
+	},
+	"homepage": "https://github.com/lucaspasseri/odin-mini-message-board#readme",
+	"description": "",
+	"dependencies": {
+		"ejs": "^5.0.1",
+		"express": "^5.2.1"
+	}
+}
