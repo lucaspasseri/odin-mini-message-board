@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -8,28 +9,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = 3000;
 
-const messages = [
-	{
-		text: "Hi there!",
-		user: "Amando",
-		added: new Date(),
-	},
-	{
-		text: "Hello World!",
-		user: "Charles",
-		added: new Date(),
-	},
-	{
-		text: "Hi there!",
-		user: "Amando",
-		added: new Date(),
-	},
-	{
-		text: "Hello World!",
-		user: "Charles",
-		added: new Date(),
-	},
-];
+const messages = [];
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -48,12 +28,30 @@ app.get("/new", (_req, res) => {
 app.post("/new", (req, res) => {
 	console.log({ b: req.body });
 	const newMessage = {
+		id: randomUUID(),
 		text: req.body.userMessage,
 		user: req.body.userName,
 		added: new Date(),
 	};
 	messages.push(newMessage);
 	res.redirect("/");
+});
+
+app.get("/message/:messageId", (req, res) => {
+	console.log({ id: req.params.messageId, messages });
+	const currMessage = messages.filter(
+		message => message.id === req.params.messageId,
+	)[0];
+
+	res.render("message/messageId", {
+		data: {
+			title: "Message Details",
+			id: currMessage.id,
+			text: currMessage.text,
+			user: currMessage.user,
+			added: currMessage.added,
+		},
+	});
 });
 
 app.listen(port, () => {
