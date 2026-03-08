@@ -21,15 +21,33 @@ header {
 }
 
 main {
-	padding: 1.5em;
+	margin: 1.5em;
+
+	p {
+		margin: 0.4em 0;
+	}
 }
 
 ul {
 	list-style: none;
 	padding: 0;
+}
 
-	li {
-		border: 1px solid black;
-		padding: 0.4em;
+a {
+	color: black;
+
+	&:hover {
+		color: white;
+	}
+}
+
+.card {
+	border: 1px solid black;
+	padding: 0.8em;
+	background-color: blueviolet;
+
+	a {
+		margin-top: 1.6em;
+		display: block;
 	}
 }

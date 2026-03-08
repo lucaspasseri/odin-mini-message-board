@@ -26,19 +26,25 @@ app.get("/new", (_req, res) => {
 });
 
 app.post("/new", (req, res) => {
-	console.log({ b: req.body });
+	const formattedDate = new Intl.DateTimeFormat("pt-BR", {
+		hour: "2-digit",
+		minute: "2-digit",
+		day: "2-digit",
+		month: "2-digit",
+		year: "numeric",
+	}).format(new Date());
+
 	const newMessage = {
 		id: randomUUID(),
 		text: req.body.userMessage,
 		user: req.body.userName,
-		added: new Date(),
+		added: formattedDate,
 	};
 	messages.push(newMessage);
 	res.redirect("/");
 });
 
 app.get("/message/:messageId", (req, res) => {
-	console.log({ id: req.params.messageId, messages });
 	const currMessage = messages.filter(
 		message => message.id === req.params.messageId,
 	)[0];
