@@ -1,4 +1,10 @@
 :root {
+	--header-height: 8em;
+	--message-form-height: 4em;
+	--footer-space: 5em;
+}
+
+* {
 	box-sizing: border-box;
 }
 
@@ -6,25 +12,56 @@ html {
 	min-height: 100vh;
 	height: fit-content;
 	display: flex;
+	/* border: 6px solid orange; */
 }
 
 body {
 	margin: 0;
-	height: 100%;
+	display: flex;
+	flex-direction: column;
 	flex: 1;
+	position: relative;
+	/* border: 4px solid green; */
 }
 
 header {
 	background-color: blueviolet;
-	height: 100%;
 	padding: 1.5em;
+	position: fixed;
+	height: var(--header-height);
+	width: 100%;
+	top: 0;
+	left: 0;
+	box-shadow:
+		rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+		rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+		rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+	/* visibility: hidden; */
 }
 
 main {
-	margin: 1.5em;
+	margin: calc(var(--header-height) + 2em) var(--footer-space) 1.5em;
+	border: 4px solid black;
+	height: calc(100vh - var(--header-height) - var(--footer-space));
+	position: relative;
+	display: flex;
+	flex-direction: column;
 
 	p {
 		margin: 0.4em 0;
+	}
+}
+
+.message-container {
+	border: 1px solid red;
+	flex: 1;
+	min-height: 0;
+	overflow-y: auto;
+
+	&.empty {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 
@@ -45,9 +82,17 @@ a {
 	border: 1px solid black;
 	padding: 0.8em;
 	background-color: blueviolet;
+	box-shadow:
+		rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+		rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
 	a {
 		margin-top: 1.6em;
 		display: block;
 	}
+}
+
+form {
+	border: 2px solid blue;
+	height: var(--message-form-height);
 }

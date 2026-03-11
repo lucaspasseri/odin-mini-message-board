@@ -1,19 +1,33 @@
+<%
+const messages = data.messages ?? [];
+const messageContainerClass =
+  messages.length === 0 ? "message-container empty" : "message-container";
+%>
+
 <!doctype html>
 <html lang="en">
 	<%- include('partials/head') %>
 	<body>
 		<%- include('partials/header') %>
 		<main>
-				<% data.messages?.forEach(message => { %>
-				<ul>
-					<li class="card">
-						<p>	<%= message?.text %></p>
-						<p>	<%= message?.user %></p>
-						<p>	<%= message?.added %></p>
-						<a href="/message/<%= message.id %>" >Open</a>
-					</li>
-				</ul>
-			<% }) %>
+			<div class='<%= messageContainerClass %>' >
+				<% if(data.messages.length === 0 ) { %>
+					<p>( No message found )</p>
+				<% } else { %>
+					<% data.messages?.forEach(message => { %>
+						<ul>
+							<li class="card">
+								<p>	<%= message?.text %></p>
+								<p>	<%= message?.user %></p>
+								<p>	<%= message?.added %></p>
+								<a href="/message/<%= message.id %>" >Open</a>
+							</li>
+						</ul>
+					<% }) %>
+				<% } %>
+			</div>
+
+			<%- include('partials/newMessageForm') %>
 		</main>
 	</body>
 </html>
