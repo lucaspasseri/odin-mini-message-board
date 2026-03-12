@@ -34,10 +34,12 @@ app.post("/new", (req, res) => {
 		year: "numeric",
 	}).format(new Date());
 
+	console.log({ b: req.body });
+
 	const newMessage = {
 		id: randomUUID(),
-		text: req.body.userMessage,
-		user: req.body.userName,
+		text: req.body.userMessage || "Have a nice day!",
+		user: req.body.userName || "(Anonymous)",
 		added: formattedDate,
 	};
 	messages.push(newMessage);

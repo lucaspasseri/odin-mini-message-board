@@ -3,21 +3,6 @@
 	<%- include('partials/head') %>
 	<body>
 		<%- include('partials/header') %>
-		<main>
-			<form method="POST" action="/new">
-				<label for="nameInput">Name:</label>
-				<input id="nameInput" type="text" placeholder="Name" name="userName" />
-
-				<label for="messageInput">Message:</label>
-				<input
-					id="messageInput"
-					type="text"
-					placeholder="(Friendly message))"
-					name="userMessage"
-				/>
-
-				<button type="submit">Send message</button>
-			</form>
-		</main>
+		<main><%- include('partials/newMessageForm') %></main>
 	</body>
 </html>

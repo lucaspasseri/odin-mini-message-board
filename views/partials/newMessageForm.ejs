@@ -1,14 +1,24 @@
 <form method="POST" action="/new">
-	<label for="nameInput">Name:</label>
-	<input id="nameInput" type="text" placeholder="Name" name="userName" />
-
-	<label for="messageInput">Message:</label>
-	<input
-		id="messageInput"
-		type="text"
-		placeholder="(Friendly message))"
-		name="userMessage"
-	/>
+	<div>
+		<div>
+			<label for="messageInput">Message:</label>
+			<input
+				id="messageInput"
+				type="text"
+				placeholder="(Friendly message)"
+				name="userMessage"
+			/>
+		</div>
+		<div>
+			<label for="nameInput">Name:</label>
+			<input
+				id="nameInput"
+				type="text"
+				placeholder="(Anonymous)"
+				name="userName"
+			/>
+		</div>
+	</div>
 
 	<button type="submit">Send message</button>
 </form>

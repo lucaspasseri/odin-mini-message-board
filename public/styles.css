@@ -3,6 +3,10 @@
 	--message-form-height: 4em;
 	--footer-space: 3em;
 	--main-color: #3d01a3;
+	--header-box-shadow:
+		rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+		rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+		rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 * {
@@ -22,12 +26,17 @@ body {
 	flex: 1;
 	position: relative;
 
+	/* background-image: url("waves-pattern-3.png");
+	background-size: cover;
+	background-repeat: repeat; */
+	/* background-size: 240px; */
+
 	background-image:
 		url("waves-pattern-3.png"),
-		linear-gradient(180deg, #ebe8fc, var(--main-color));
+		linear-gradient(180deg, #ffffff, var(--main-color));
 
 	background-repeat: repeat, repeat;
-	background-size: 200px;
+	background-size: cover;
 }
 
 header {
@@ -41,10 +50,7 @@ header {
 	width: 100%;
 	top: 0;
 	left: 0;
-	box-shadow:
-		rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
-		rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
-		rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+	box-shadow: var(--header-box-shadow);
 	/* visibility: hidden; */
 
 	> div {
@@ -69,13 +75,13 @@ header {
 }
 
 main {
-	margin: calc(var(--header-height) + 2em) 1em var(--footer-space);
+	margin: var(--header-height) 1em var(--footer-space);
 	height: calc(100vh - var(--header-height) - var(--footer-space));
 	position: relative;
 	display: flex;
 	flex-direction: column;
 
-	border: 0.4em dashed var(--main-color);
+	/* border: 0.4em dashed var(--main-color); */
 
 	p {
 		margin: 0.4em 0;
@@ -115,20 +121,44 @@ a {
 
 .card {
 	padding: 0.8em;
-	background-color: blueviolet;
+	background-color: whitesmoke;
 	box-shadow:
 		rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
 		rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
 
-	a {
-		margin-top: 1.6em;
-		display: block;
+	> div {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		> div {
+			font-size: 0.8em;
+		}
+
+		> a {
+			display: flex;
+			color: black;
+		}
 	}
 }
 
 form {
-	border: 2px solid blue;
 	height: var(--message-form-height);
 	padding: 0.4em;
-	background-color: black;
+	background-color: var(--main-color);
+	box-shadow: var(--header-box-shadow);
+	display: flex;
+	justify-content: space-between;
+
+	label {
+		color: white;
+	}
+
+	> div {
+		display: flex;
+		gap: 2em;
+	}
 }

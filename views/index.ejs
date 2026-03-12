@@ -18,9 +18,12 @@ const messageContainerClass =
 						<ul>
 							<li class="card">
 								<p>	<%= message?.text %></p>
-								<p>	<%= message?.user %></p>
-								<p>	<%= message?.added %></p>
-								<a href="/message/<%= message.id %>" >Open</a>
+								<div>
+									<div>
+										<p>	<%= message?.user %> - <%= message?.added %></p>
+									</div>
+									<a href="/message/<%= message.id %>" >Open</a>
+								</div>
 							</li>
 						</ul>
 					<% }) %>
