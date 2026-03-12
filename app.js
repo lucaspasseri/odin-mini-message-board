@@ -34,8 +34,6 @@ app.post("/new", (req, res) => {
 		year: "numeric",
 	}).format(new Date());
 
-	console.log({ b: req.body });
-
 	const newMessage = {
 		id: randomUUID(),
 		text: req.body.userMessage || "Have a nice day!",
@@ -43,7 +41,8 @@ app.post("/new", (req, res) => {
 		added: formattedDate,
 	};
 	messages.push(newMessage);
-	res.redirect("/");
+	res.redirect(`/#message-${newMessage.id}`);
+	// res.redirect("/");
 });
 
 app.get("/message/:messageId", (req, res) => {

@@ -1,12 +1,19 @@
 :root {
+	--page-padding: 4em;
 	--header-height: 8em;
-	--message-form-height: 4em;
 	--footer-space: 3em;
 	--main-color: #3d01a3;
 	--header-box-shadow:
 		rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
 		rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
 		rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+	--card-radius: 12px;
+}
+
+@media (max-width: 400px) {
+	:root {
+		--page-padding: 1em;
+	}
 }
 
 * {
@@ -17,6 +24,7 @@ html {
 	min-height: 100vh;
 	height: fit-content;
 	display: flex;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -25,18 +33,12 @@ body {
 	flex-direction: column;
 	flex: 1;
 	position: relative;
-
-	/* background-image: url("waves-pattern-3.png");
-	background-size: cover;
-	background-repeat: repeat; */
-	/* background-size: 240px; */
+	/* background-image: url("waves-pattern-3.png"); */
 
 	background-image:
 		url("waves-pattern-3.png"),
 		linear-gradient(180deg, #ffffff, var(--main-color));
-
-	background-repeat: repeat, repeat;
-	background-size: cover;
+	background-size: cover cover;
 }
 
 header {
@@ -44,14 +46,13 @@ header {
 	align-items: center;
 	justify-content: space-between;
 	background-color: var(--main-color);
-	padding: 1.5em;
+	padding: var(--page-padding);
 	position: fixed;
 	height: var(--header-height);
 	width: 100%;
 	top: 0;
 	left: 0;
 	box-shadow: var(--header-box-shadow);
-	/* visibility: hidden; */
 
 	> div {
 		display: flex;
@@ -60,7 +61,7 @@ header {
 	}
 
 	img {
-		border-radius: 16px;
+		border-radius: var(--card-radius);
 	}
 
 	h1 {
@@ -75,17 +76,29 @@ header {
 }
 
 main {
-	margin: var(--header-height) 1em var(--footer-space);
+	margin: var(--header-height) var(--page-padding) var(--footer-space);
 	height: calc(100vh - var(--header-height) - var(--footer-space));
 	position: relative;
 	display: flex;
 	flex-direction: column;
 
-	/* border: 0.4em dashed var(--main-color); */
-
 	p {
 		margin: 0.4em 0;
 	}
+}
+
+main.details {
+	margin: calc(var(--header-height) + 2em) auto calc(var(--footer-space) - 2em);
+	width: fit-content;
+	height: fit-content;
+
+	h1 {
+		font-size: 1.8em;
+	}
+}
+
+main.new-message-form {
+	margin: calc(var(--header-height) + 2em) var(--page-padding) 0;
 }
 
 .message-container {
@@ -93,21 +106,24 @@ main {
 	min-height: 0;
 	overflow-y: auto;
 
+	p {
+		color: var(--main-color);
+		font-size: 1.5em;
+	}
+
 	&.empty {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
-
-	p {
-		color: var(--main-color);
-		font-size: 1.5em;
 	}
 }
 
 ul {
 	list-style: none;
 	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
 }
 
 a {
@@ -125,7 +141,7 @@ a {
 	box-shadow:
 		rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
 		rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-	border-radius: 12px;
+	border-radius: var(--card-radius);
 	display: flex;
 	flex-direction: column;
 
@@ -145,13 +161,30 @@ a {
 	}
 }
 
+.card:target {
+	animation: fade-in 0.4s ease-out;
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+		scale: 0;
+	}
+	100% {
+		opacity: 1;
+		scale: 100%;
+	}
+}
+
 form {
-	height: var(--message-form-height);
-	padding: 0.4em;
+	height: fit-content;
+	padding: 1em;
 	background-color: var(--main-color);
 	box-shadow: var(--header-box-shadow);
 	display: flex;
-	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 1em;
+	border-radius: var(--card-radius);
 
 	label {
 		color: white;
@@ -159,6 +192,13 @@ form {
 
 	> div {
 		display: flex;
-		gap: 2em;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1em;
+	}
+
+	button {
+		display: block;
+		margin-left: auto;
 	}
 }
