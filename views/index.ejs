@@ -1,7 +1,7 @@
 <%
-const messages = data.messages ?? [];
+const messagesArr = messages ?? [];
 const messageContainerClass =
-  messages.length === 0 ? "message-container empty" : "message-container";
+  messagesArr.length === 0 ? "message-container empty" : "message-container";
 
 const getMessageId = (message) => {
 	return `message-${message.id}`
@@ -15,17 +15,17 @@ const getMessageId = (message) => {
 		<%- include('partials/header') %>
 		<main>
 			<div class='<%= messageContainerClass %>' >
-				<% if(data.messages.length === 0 ) { %>
+				<% if(messagesArr.length === 0 ) { %>
 					<p>( No message found )</p>
 				<% } else { %>
 					<ul>
-						<% data.messages?.forEach(message => { %>
+						<% messagesArr.forEach(message => { %>
 						
 								<li class="card" id="<%= getMessageId(message) %>">
 									<p>	<%= message?.text %></p>
 									<div>
 										<div>
-											<p>	<%= message?.user %> - <%= message?.added %></p>
+											<p>	<%= message?.username %> - <%= message?.added %></p>
 										</div>
 										<a href="/message/<%= message.id %>" >Open</a>
 									</div>
