@@ -4,10 +4,9 @@
 	"main": "app.js",
 	"type": "module",
 	"scripts": {
-		"start": "PORT=3000 node --watch app.js",
-		"dev": "node --env-file-if-exists=.env --watch app.js ",
-		"seed": "node --env-file-if-exists=.env db/populatedb.js ",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "node app.js",
+		"dev": "node --env-file-if-exists=.env --watch app.js",
+		"seed": "node --env-file-if-exists=.env db/populatedb.js"
 	},
 	"repository": {
 		"type": "git",
