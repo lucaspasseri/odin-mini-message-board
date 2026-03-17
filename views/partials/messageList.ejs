@@ -1,0 +1,39 @@
+
+<%
+	const messageListClass =
+		messages.length === 0 ? "message-list empty" : "message-list";
+
+	const getMessageId = (message) => {
+		return `message-${message.id}`
+	}
+
+	const goToSeeMore = () => {
+		console.log(123)
+	}
+%>
+
+
+
+<div class='<%= messageListClass %>' >
+	<% if(messages.length === 0 ) { %>
+		<p>( No message found )</p>
+
+	<% } else { %>
+		<ul>
+			<% messages.forEach(message => { %>	
+				<li class="message-item" id="<%= getMessageId(message) %>">
+					<p><%= message?.text %></p>
+					<div>
+						<div>
+							<p><%= message?.username %> - <%= message?.added %></p>
+						</div>
+						<a href="/message/<%= message.id %>"><button >Open</button></a>
+					</div>
+				</li>
+			<% }) %>
+		</ul>
+	<% } %>
+</div>
+
+
+

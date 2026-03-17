@@ -1,42 +1,11 @@
-<%
-const messagesArr = messages ?? [];
-const messageContainerClass =
-  messagesArr.length === 0 ? "message-container empty" : "message-container";
-
-const getMessageId = (message) => {
-	return `message-${message.id}`
-}
-%>
-
 <!doctype html>
 <html lang="en">
 	<%- include('partials/head') %>
 	<body>
 		<%- include('partials/header') %>
 		<main>
-			<div class='<%= messageContainerClass %>' >
-				<% if(messagesArr.length === 0 ) { %>
-					<p>( No message found )</p>
-				<% } else { %>
-					<ul>
-						<% messagesArr.forEach(message => { %>
-						
-								<li class="card" id="<%= getMessageId(message) %>">
-									<p>	<%= message?.text %></p>
-									<div>
-										<div>
-											<p>	<%= message?.username %> - <%= message?.added %></p>
-										</div>
-										<a href="/message/<%= message.id %>" >Open</a>
-									</div>
-								</li>
-					
-						<% }) %>
-					</ul>
-				<% } %>
-			</div>
-
-			<%- include('partials/newMessageForm') %>
+			<%- include('partials/messageList') %> <%-
+			include('partials/newMessageForm') %>
 		</main>
 	</body>
 </html>

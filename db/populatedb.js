@@ -1,5 +1,22 @@
 import { Client } from "pg";
 
+// const sql = `
+// 	DROP TABLE IF EXISTS messages;
+
+// 	CREATE TABLE messages (
+// 		id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+// 		text TEXT,
+// 		username VARCHAR(255),
+// 		added TIMESTAMPTZ DEFAULT NOW()
+// 	);
+
+// 	INSERT INTO messages (text, username)
+// 	VALUES
+// 		('Hello world!', 'Adam'),
+// 		('How are you doing?', 'Ben'),
+// 		('Have a nice day!', 'Cris');
+// `;
+
 const sql = `
 	DROP TABLE IF EXISTS messages;
 
@@ -9,12 +26,6 @@ const sql = `
 		username VARCHAR(255),
 		added TIMESTAMPTZ DEFAULT NOW()
 	);
-
-	INSERT INTO messages (text, username)
-	VALUES
-		('Hello world!', 'Adam'),
-		('How are you doing?', 'Ben'),
-		('Have a nice day!', 'Cris');
 `;
 
 async function main() {
