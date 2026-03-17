@@ -4,7 +4,7 @@ I am improving my skills as a web developer, learning Fullstack Javascript with 
 
 ## Deploy
 
-You can [see the site](https://odin-mini-message-board-4jj1.onrender.com/#message-fe41ff60-5015-4545-b4d8-1d74cd117942) on Render.
+You can [see the site](https://odin-mini-message-board-4jj1.onrender.com/) on Render.
 
 ## Me
 

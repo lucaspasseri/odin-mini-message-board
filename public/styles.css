@@ -280,7 +280,6 @@ a {
 
 @keyframes show-up {
 	100% {
-		transform: translateY(0.3em);
-		transform: scale(1.1);
+		transform: translateY(0.3em) scale(1.1);
 	}
 }
