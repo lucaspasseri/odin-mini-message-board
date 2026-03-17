@@ -1,22 +1,5 @@
 import { Client } from "pg";
 
-// const sql = `
-// 	DROP TABLE IF EXISTS messages;
-
-// 	CREATE TABLE messages (
-// 		id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-// 		text TEXT,
-// 		username VARCHAR(255),
-// 		added TIMESTAMPTZ DEFAULT NOW()
-// 	);
-
-// 	INSERT INTO messages (text, username)
-// 	VALUES
-// 		('Hello world!', 'Adam'),
-// 		('How are you doing?', 'Ben'),
-// 		('Have a nice day!', 'Cris');
-// `;
-
 const sql = `
 	DROP TABLE IF EXISTS messages;
 
@@ -26,17 +9,22 @@ const sql = `
 		username VARCHAR(255),
 		added TIMESTAMPTZ DEFAULT NOW()
 	);
+
+	INSERT INTO messages (text, username)
+	VALUES
+		('Hello world!', 'Adam'),
+		('How are you doing?', 'Ben'),
+		('Have a nice day!', 'Cris');
 `;
 
 async function main() {
 	console.log("Seeding database...");
 
 	const client = new Client({
-		host: process.env.HOST,
-		user: process.env.USER,
-		database: process.env.DATABASE,
-		password: process.env.PASSWORD,
-		port: process.env.DB_PORT,
+		connectionString: process.env.DATABASE_URL,
+		ssl: process.env.DATABASE_URL?.includes("neon")
+			? { rejectUnauthorized: false }
+			: false,
 	});
 
 	try {
