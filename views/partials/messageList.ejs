@@ -37,7 +37,12 @@
 <script>
 	const container = document.getElementById("message-container");
 	container.scrollTop = container.scrollHeight;
-	if (window.location.hash) {
-  	history.replaceState(null, "", window.location.pathname);
+
+	const hash = window.location.hash;
+
+	if (hash) {
+		const el = document.querySelector(hash);
+    if (el) el.focus();
+  	setTimeout(()=> {history.replaceState(null, "", window.location.pathname)}, 400)
 	}
 </script>
