@@ -1,9 +1,9 @@
 import express, { Router } from "express";
-import { getForm, postForm } from "../controllers/new.js";
+import { getForm, postNewMessage } from "../controllers/new.js";
 
 const router = Router();
 
 router.get("/", getForm);
-router.post("/", express.urlencoded({ extended: true }), postForm);
+router.post("/", express.urlencoded({ extended: true }), postNewMessage);
 
 export default router;

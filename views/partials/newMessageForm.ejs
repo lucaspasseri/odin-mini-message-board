@@ -1,3 +1,11 @@
+<% 
+	const safeError = form?.errors || [];
+	const safeOld = form?.old || {};
+
+	const textError = safeError.find(e => e.path === "text")?.msg;
+	const usernameError = safeError.find(e => e.path === "username")?.msg;
+%>
+
 <form method="POST" action="/new" class="new-message-form">
 	<div>
 		<div>
@@ -7,7 +15,11 @@
 				type="text"
 				placeholder="(Friendly message)"
 				name="text"
+				value="<%= safeOld?.text || '' %>"
 			/>
+			<% if(textError){ %>
+				<p><%= textError %></p>
+			<% } %>
 		</div>
 		<div>
 			<label for="nameInput">Name:</label>
@@ -16,12 +28,18 @@
 				type="text"
 				placeholder="(Anonymous)"
 				name="username"
+				value="<%= safeOld?.username || '' %>"
 			/>
+			<% if(usernameError){ %>
+				<p><%= usernameError %></p> 
+			<% } %>
 		</div>
+		<input type="hidden" name="page" value="<%= page?.path || '' %>" />
 	</div>
 
 	<button type="submit">
-		<img src="../logo.png" width="36" height="36" />
-		<p>Throw!</p>
+		<!-- <img src="../logo.png" width="36" height="36" />
+		<p>Throw!</p> -->
+		SEND
 	</button>
 </form>

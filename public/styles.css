@@ -1,7 +1,7 @@
 :root {
-	--page-padding: 4em;
+	--page-padding: 2em;
 	--header-height: 8em;
-	--footer-space: 3em;
+	--footer-height: 12em;
 	--main-color: #3d01a3;
 	--card-radius: 12px;
 	--main-width: calc(100vw - (2 * var(--page-padding)));
@@ -22,6 +22,7 @@
 @media (max-width: 400px) {
 	:root {
 		--page-padding: 1em;
+		--footer-height: 16em;
 	}
 }
 
@@ -50,7 +51,6 @@ body {
 	flex-direction: column;
 	flex: 1;
 	position: relative;
-
 	background-image:
 		url("waves-pattern.png"),
 		linear-gradient(180deg, #ffffff, var(--main-color));
@@ -62,11 +62,10 @@ header {
 	align-items: center;
 	justify-content: space-between;
 	background-color: var(--main-color);
-	padding: var(--page-padding);
-	position: fixed;
-	z-index: 2;
 	height: var(--header-height);
 	width: 100%;
+	padding: 0 var(--page-padding);
+	position: fixed;
 	top: 0;
 	left: 0;
 	box-shadow: var(--header-box-shadow);
@@ -93,12 +92,11 @@ header {
 }
 
 main {
-	margin: var(--header-height) var(--page-padding) var(--footer-space);
-	height: calc(100vh - var(--header-height) - var(--footer-space));
-	position: relative;
+	height: calc(100vh - var(--footer-height));
 	display: flex;
 	flex-direction: column;
-	width: var(--main-width);
+	padding: 0 var(--page-padding);
+	padding-top: calc(var(--header-height) - 1em);
 }
 
 .details {
@@ -126,13 +124,6 @@ main {
 	}
 }
 
-ul {
-	list-style: none;
-	display: flex;
-	flex-direction: column;
-	gap: 1em;
-}
-
 a {
 	display: flex;
 	color: white;
@@ -145,21 +136,27 @@ a {
 	}
 }
 
+ul {
+	list-style: none;
+}
+
 .message-list {
-	flex: 1;
-	min-height: 0;
-	overflow-y: auto;
+	height: 500px;
+	height: 100%;
+	overflow: auto;
 	font-size: 1.4em;
-	color: var(--main-color);
-	margin-top: -2em;
-	margin-bottom: -2em;
-	padding-top: 3em;
-	padding-bottom: 3em;
 
 	&.empty {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	ul {
+		margin: 2.5em var(--page-padding);
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
 	}
 }
 
@@ -173,6 +170,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	gap: 0.4em;
+	color: var(--main-color);
 
 	> p {
 		overflow: hidden;
@@ -197,9 +195,9 @@ a {
 
 	button {
 		font-size: 0.5em;
-		padding: 0.3em 0.6em;
+		padding: 0.4em 0.8em;
 		color: white;
-		border-radius: 12px;
+		border-radius: 8px;
 		border: 0;
 		background-color: var(--main-color);
 		box-shadow: var(--message-item-button-box-shadow);
@@ -211,33 +209,46 @@ a {
 	}
 }
 
+main.new .new-message-form {
+	margin: 3em 0 0;
+	width: 100%;
+}
+
 .new-message-form {
+	max-height: var(--footer-height);
 	height: fit-content;
 	padding: 1em;
+	margin: -1em var(--page-padding) 0;
 	background-color: var(--main-color);
 	box-shadow: var(--header-box-shadow);
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1em;
+	gap: 0.6em;
 	border-radius: var(--card-radius);
-	margin-top: 2em;
 	align-items: flex-end;
+	z-index: 1;
+	width: calc(100% - 2 * var(--page-padding));
 
 	input {
 		width: var(--input-width);
 		padding-left: 0.3em;
-		height: 3em;
+		height: 2.4em;
 		border-radius: var(--card-radius);
 		margin-top: 0.2em;
 	}
 
 	label {
 		color: white;
+		font-size: 0.9em;
+	}
+
+	p {
+		color: white;
 	}
 
 	> div {
 		display: flex;
-		gap: 1em;
+		gap: 0.4em;
 		flex-wrap: wrap;
 		width: var(--input-width);
 
@@ -253,7 +264,7 @@ a {
 		color: white;
 		border: 0.2em solid white;
 		padding: 0.4em 0.8em;
-		border-radius: var(--card-radius);
+		border-radius: 10px;
 		box-shadow: var(--message-item-button-box-shadow);
 		height: fit-content;
 
@@ -267,6 +278,7 @@ a {
 		border-radius: 12px;
 	}
 }
+
 @keyframes fade-in {
 	0% {
 		opacity: 0;

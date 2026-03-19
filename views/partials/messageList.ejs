@@ -1,27 +1,26 @@
 
 <%
+	const safeMessages = data?.messages || [];
+
 	const messageListClass =
-		messages.length === 0 ? "message-list empty" : "message-list";
+		safeMessages.length === 0 ? "message-list empty" : "message-list";
 
 	const getMessageId = (message) => {
 		return `message-${message.id}`
 	}
 
-	const goToSeeMore = () => {
-		console.log(123)
-	}
 %>
 
 
 
-<div class='<%= messageListClass %>' >
-	<% if(messages.length === 0 ) { %>
+<div id="message-container" class='<%= messageListClass %>' >
+	<% if(safeMessages.length === 0 ) { %>
 		<p>( No message found )</p>
 
 	<% } else { %>
 		<ul>
-			<% messages.forEach(message => { %>	
-				<li class="message-item" id="<%= getMessageId(message) %>">
+			<% safeMessages.forEach((message,index) => { %>	
+				<li class="<%= index === safeMessages.length - 1 ? 'message-item last-message' : 'message-item' %>" id="<%= getMessageId(message) %>" >
 					<p><%= message?.text %></p>
 					<div>
 						<div>
@@ -35,5 +34,10 @@
 	<% } %>
 </div>
 
-
-
+<script>
+	const container = document.getElementById("message-container");
+	container.scrollTop = container.scrollHeight;
+	if (window.location.hash) {
+  	history.replaceState(null, "", window.location.pathname);
+	}
+</script>
